@@ -1,0 +1,147 @@
+body {
+    background: repeating-linear-gradient(90deg, #FFF2E6, #FFF2E6 20px, #FFE3CB 20px, #FFE3CB 40px);
+}
+
+header {
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: .05em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #904C6E;
+    background: white;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #F0C7A7;
+}
+
+.button::after {
+    font-family: Linearicons-Free;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    margin-left: 30px;
+    padding-left: 20px;
+    border-left: 1px solid;
+}
+
+.btn1::after {
+    content: "\270e";
+}
+
+.btn2::after {
+    content: "\265b";
+}
+
+input {
+    font-size: 12px;
+    letter-spacing: .05em;
+    font-weight: 600;
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #904C6E;
+    background: white;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+label {
+    font-size: 12px;
+    letter-spacing: .05em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #904C6E;
+}
+
+.label {
+    font-size: 12px;
+    letter-spacing: .05em;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #904C6E;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#container {
+    position: relative;
+}
+
+.mySlides {
+    display: none;
+}
+  
+.cursor {
+    cursor: pointer;
+}
+  
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+  
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+  
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+  
+#row:after {
+    display: table;
+    clear: both;
+}
+  
+.column {
+    float: left;
+    width: 16.66%;
+}
+  
+.demo {
+    opacity: 0.6;
+}
+  
+.active,
+.demo:hover {
+    opacity: 1;
+}
+

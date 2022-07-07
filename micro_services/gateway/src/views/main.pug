@@ -1,0 +1,33 @@
+extends components/layout.pug
+
+block content
+  #main
+    head
+      title= title
+    body
+      header#header.label
+        button#reg.button.btn1(onclick='registration()') Регистрация
+        div#registration
+          label Имя:
+            input#regName(type='text' name='name')
+          label Логин:
+            input#regLogin(type='text' name='login')
+          label Пароль:
+            input#regPassword(type='text' name='password')
+          button.button(type='submit' onclick='addNewUser()') Отправить
+        button#auth.button.btn2(onclick='authorization()') Войти
+        div#authorization
+          label Логин:
+            input#login(type='text' name='login')
+          label Пароль:
+            input#password(type='text' name='password')
+          button.button(type='button' onclick='getTokenData()') Отправить
+        div#upload
+          div.label Добавить фото:
+          input(type='file' name='multipleFiles' multiple='multiple')
+          input(type='submit' value='Загрузить' onclick='uploadImage()')
+      div#container
+        div#containerImg
+        a.prev(onclick='plusSlides(-1)') &#10094;
+        a.next(onclick='plusSlides(1)') &#10095;
+        div#row

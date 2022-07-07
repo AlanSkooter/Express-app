@@ -1,0 +1,10 @@
+{
+  "name": "app-express",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
