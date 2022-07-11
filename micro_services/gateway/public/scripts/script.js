@@ -150,3 +150,16 @@ const uploadImage = async () => {
   }
   location.reload();
 }
+
+const connectSocket = () => {
+  const socket = io('ws://localhost:3000');
+  const message = document.getElementById('message').value;
+	socket.emit('send mess', { message: message });
+	socket.on('add mess', (data) => {
+    const chat = document.getElementById('all_mess');
+    const mess = document.createElement('div');
+    mess.innerHTML = `<span>${data.message}</span>`;
+    chat.append(mess);
+	});
+  socket.emit('disconnect');
+}

@@ -31,3 +31,8 @@ block content
         a.prev(onclick='plusSlides(-1)') &#10094;
         a.next(onclick='plusSlides(1)') &#10095;
         div#row
+      div#chat
+        div.label Добавить сообщение:
+          textarea(name="message" id="message" class="textarea" cols="60" rows="5")
+          input(type='submit' value='Отправить' onclick='connectSocket()')
+        div#all_mess

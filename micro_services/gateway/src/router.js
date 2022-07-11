@@ -15,10 +15,5 @@ router.get('/pets/images/', asyncErrorHandler(petsController.getPets));
 router.post('/reg', validationMiddleware(usersSchemas.createUser), asyncErrorHandler(usersController.addNewUser));
 router.post('/login', validationMiddleware(usersSchemas.loginUser), asyncErrorHandler(usersController.loginUser));
 router.post('/image/upload', checkAuth, asyncErrorHandler(petsController.uploadPet));
-router.get('*', (req, res) => {
-    res.render('404', {
-        title: 'Not found page',
-    })
-});
 
 module.exports = router;
