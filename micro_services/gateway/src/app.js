@@ -13,16 +13,10 @@ const io = new Server(httpServer);
 let connections = [];
 
 io.on('connection', (socket) => {
-	console.log('Успешное соединение');
-  connections.push(socket);
-	socket.on('send mess', (data) => {
-    //записать в json мое сообщение
-		io.emit('add mess', { message: data.message });
-	});
-  socket.on('disconnect', () => {
-		connections.splice(connections.indexOf(socket), 1);
-		console.log('Отключились');
-	});
+  socket.on('test_event', (data) => {
+    console.log('CONSOLE:data', data)
+    io.emit('test_response', { message: data.message });
+  });
 });
 
 app.set('views', join(__dirname, 'views'));
