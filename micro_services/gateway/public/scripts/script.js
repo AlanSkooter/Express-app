@@ -1,21 +1,21 @@
 let slideIndex = 1;
 
 (async () => {
-    const pets = (await fetch('/pets/images/').then((res) => res.json())) || [];
-    const container = document.getElementById('containerImg');
-    const row = document.getElementById('row');
-    for (i = 0; i < pets.length; i++) {
-      let pet = pets[i];
-      const petDiv = document.createElement('div');
-      const petMini = document.createElement('div');
-        petDiv.className = "mySlides";
-        petMini.className = "column";
-        petDiv.innerHTML = `<img src="images/${pet}" style="width:100%"></img>`;
-        petMini.innerHTML = `<img class="demo cursor" src="images/${pet}" style="width:85%" onclick="currentSlide(${i+1})">`
-        container.append(petDiv);
-        row.append(petMini);
-    };
-    showSlides(slideIndex);
+  const pets = (await fetch('/pets/images/').then((res) => res.json())) || [];
+  const container = document.getElementById('containerImg');
+  const row = document.getElementById('row');
+  for (i = 0; i < pets.length; i++) {
+    let pet = pets[i];
+    const petDiv = document.createElement('div');
+    const petMini = document.createElement('div');
+    petDiv.className = "mySlides";
+    petMini.className = "column";
+    petDiv.innerHTML = `<img src="images/${pet}" style="width:100%"></img>`;
+    petMini.innerHTML = `<img class="demo cursor" src="images/${pet}" style="width:85%" onclick="currentSlide(${i+1})">`
+    container.append(petDiv);
+    row.append(petMini);
+  };
+  showSlides(slideIndex);
 })();
 
 function plusSlides(n) {
@@ -65,33 +65,33 @@ const getTokenData = async () => {
     alert('Введите корректные данные!');
     location.reload();
   } else {
-  await fetch('/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(user)
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.code) {
-        alert('Введите корректные данные!');
-        location.reload();
-      } else {
-        localStorage.setItem('token', JSON.stringify(data));
-        document.getElementById('authorization').style.display = 'none';
-        document.getElementById('reg').style.display = 'none';
-        document.getElementById('auth').style.display = 'none';
-        document.getElementById('upload').style.display = 'block';
-        const userHello = document.createElement('p');
-        userHello.innerHTML = `Привет, ${user.login}!`;
-        const header = document.getElementById('header');
-        header.prepend(userHello);
-      }
+    await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
     })
-    .catch((error) => {
-      console.error(error);
-    });
+      .then(response => response.json())
+      .then(data => {
+        if (data.code) {
+          alert('Введите корректные данные!');
+          location.reload();
+        } else {
+          localStorage.setItem('token', JSON.stringify(data));
+          document.getElementById('authorization').style.display = 'none';
+          document.getElementById('reg').style.display = 'none';
+          document.getElementById('auth').style.display = 'none';
+          document.getElementById('upload').style.display = 'block';
+          const userHello = document.createElement('p');
+          userHello.innerHTML = `Привет, ${user.login}!`;
+          const header = document.getElementById('header');
+          header.prepend(userHello);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }
 
@@ -153,13 +153,17 @@ const uploadImage = async () => {
 
 const connectSocket = () => {
   const socket = io('ws://localhost:3000');
-  const message = document.getElementById('message').value;
-	socket.emit('send mess', { message: message });
-	socket.on('add mess', (data) => {
+  socket.on('test_response', (data) => {
     const chat = document.getElementById('all_mess');
     const mess = document.createElement('div');
     mess.innerHTML = `<span>${data.message}</span>`;
     chat.append(mess);
-	});
-  socket.emit('disconnect');
+  });
+  const input = document.getElementById('send-message');
+  input.addEventListener('click', () => {
+    const message = document.getElementById('message');
+    socket.emit('test_event', { message: message.value });
+    message.value = ''
+  })
 }
+connectSocket()
