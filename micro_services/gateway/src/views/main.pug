@@ -32,7 +32,8 @@ block content
         a.next(onclick='plusSlides(1)') &#10095;
         div#row
       div#chat
-        div.label Добавить сообщение:
+        div#add-message
+          div.label Добавить сообщение:
           textarea(name="message" id="message" class="textarea" cols="60" rows="5")
-          input(type='submit' value='Отправить' onclick='connectSocket()')
+          input(type='submit' value='Отправить' id='send-message')
         div#all_mess

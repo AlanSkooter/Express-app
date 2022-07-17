@@ -156,3 +156,23 @@ label {
     opacity: 1;
 }
 
+#chat {
+    display: flex;
+    flex-direction: row;
+}
+
+#add-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-message {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px;
+    font-family: 'Montserrat', sans-serif;
+    color: #904C6E;
+    background: white;
+    margin: 5px;
+}

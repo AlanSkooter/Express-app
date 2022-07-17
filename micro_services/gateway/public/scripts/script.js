@@ -79,6 +79,7 @@ const getTokenData = async () => {
         location.reload();
       } else {
         localStorage.setItem('token', JSON.stringify(data));
+        localStorage.setItem('login', JSON.stringify(user.login));
         document.getElementById('authorization').style.display = 'none';
         document.getElementById('reg').style.display = 'none';
         document.getElementById('auth').style.display = 'none';
@@ -153,13 +154,21 @@ const uploadImage = async () => {
 
 const connectSocket = () => {
   const socket = io('ws://localhost:3000');
-  const message = document.getElementById('message').value;
-	socket.emit('send mess', { message: message });
-	socket.on('add mess', (data) => {
+  socket.on('add_mess', (data) => {
     const chat = document.getElementById('all_mess');
     const mess = document.createElement('div');
-    mess.innerHTML = `<span>${data.message}</span>`;
+    mess.className = "new-message";
+    mess.innerHTML = `<span>${data.author}   ${data.time}   ${data.message}</span>`;
     chat.append(mess);
-	});
-  socket.emit('disconnect');
+  });
+  const input = document.getElementById('send-message');
+  input.addEventListener('click', () => {
+    const message = document.getElementById('message');
+    const name = localStorage.getItem('login') || '"Аноним"';
+    const author = name.split('"')[1];
+    socket.emit('send_mess', { message: message.value, author: author });
+    message.value = '';
+  });
 }
+
+connectSocket();
