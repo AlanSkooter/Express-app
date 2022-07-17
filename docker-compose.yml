@@ -1,0 +1,34 @@
+version: "2.6"
+
+volumes:
+  storage_data:
+
+networks:
+  myapp:
+
+services:
+  database:
+    image: postgres:14.3-alpine
+    env_file: ./micro_services/storage/.env
+    restart: unless-stopped
+    volumes:
+      - storage_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - myapp
+
+  storage:
+    container_name: storage
+    build:
+      context: ./micro_services/storage
+      dockerfile: Dockerfile.local
+    depends_on:
+      - database
+    volumes:
+      - ./micro_services/storage/src/:/app/src/
+      - ./micro_services/storage/prisma/:/app/prisma/
+    environment:
+      PORT: 4000
+    networks:
+      - myapp
